@@ -1,0 +1,6 @@
+spring:
+  data:
+    mongodb:
+      uri: mongodb+srv://prathameshcorporations:0NzuD5LoW1idSxxH@taskmanager.ahquy.mongodb.net/?retryWrites=true&w=majority&appName=TaskManager
+      database: Manager
+      auto-index-creation: true
