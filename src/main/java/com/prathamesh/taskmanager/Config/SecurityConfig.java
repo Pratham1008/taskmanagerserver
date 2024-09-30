@@ -1,7 +1,5 @@
 package com.prathamesh.taskmanager.Config;
 
-import com.mongodb.lang.NonNull;
-import com.prathamesh.taskmanager.Filters.CorsFilter;
 import com.prathamesh.taskmanager.Filters.JwtFilter;
 import com.prathamesh.taskmanager.Service.CustomUserDetails;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,7 +30,7 @@ public class SecurityConfig{
         return http
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(
-                        req -> req.requestMatchers("api/auth/**")
+                        req -> req.requestMatchers("api/auth/**","/")
                                 .permitAll()
                                 .anyRequest()
                                 .authenticated())
