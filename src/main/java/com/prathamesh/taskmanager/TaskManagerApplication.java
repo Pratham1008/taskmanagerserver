@@ -15,7 +15,6 @@ public class TaskManagerApplication {
 
     @GetMapping("/")
     public String index(){
-        return "<h1>Welcome to The Task Manager Server</h1><br>" +
-                "<p>The end points of this server are protected if you are here by mistake prefer returning back</p>";
+        return "<body style='background-color: black; color: white; display: flex; justify-content:center; align-items : center;'><h1>Welcome to The Task Manager Server, End points are protected prefer not to stay here....</h1></body>";
     }
 }
