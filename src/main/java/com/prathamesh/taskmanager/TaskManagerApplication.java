@@ -13,7 +13,7 @@ public class TaskManagerApplication {
         SpringApplication.run(TaskManagerApplication.class, args);
     }
 
-    @GetMapping("/")
+    @GetMapping("/home")
     public String index(){
         return "<h1>Welcome to The Task Manager Server</h1><br>" +
                 "<p>The end points of this server are protected if you are here by mistake prefer returning back</p>";
