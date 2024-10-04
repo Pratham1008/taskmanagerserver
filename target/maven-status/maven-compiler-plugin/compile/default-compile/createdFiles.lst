@@ -6,7 +6,6 @@ com\prathamesh\taskmanager\Filters\JwtFilter.class
 com\prathamesh\taskmanager\Controller\TaskController.class
 com\prathamesh\taskmanager\Model\Priority.class
 com\prathamesh\taskmanager\Service\CustomUserDetails.class
-com\prathamesh\taskmanager\Filters\CorsConfig.class
 com\prathamesh\taskmanager\Model\Tasks.class
 com\prathamesh\taskmanager\Repository\UserRepository.class
 com\prathamesh\taskmanager\Service\TaskService.class
