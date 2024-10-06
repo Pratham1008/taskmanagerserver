@@ -106,7 +106,7 @@ public class TaskService {
 
         Trigger trigger = TriggerBuilder.newTrigger()
                 .forJob(jobDetail)
-                .withIdentity("emailTrigger-" + task.getId())
+                .withIdentity(job + task.getId())
                 .startAt(dueDate)
                 .withSchedule(SimpleScheduleBuilder.simpleSchedule().withMisfireHandlingInstructionFireNow())
                 .build();
