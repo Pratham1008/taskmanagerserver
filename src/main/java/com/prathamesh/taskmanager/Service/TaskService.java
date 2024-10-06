@@ -91,8 +91,9 @@ public class TaskService {
     private void scheduleEmail(Tasks task, String job) throws SchedulerException {
         Date dueDate;
         try {
-            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-            dueDate = dateFormat.parse(task.getDueDate());
+            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            String taskDue = task.getDueDate() + "08:00:00";
+            dueDate = dateFormat.parse(taskDue);
         } catch (ParseException e) {
             throw new SchedulerException("Invalid date format", e);
         }
