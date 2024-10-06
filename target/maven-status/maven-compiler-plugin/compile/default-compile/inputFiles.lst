@@ -1,3 +1,5 @@
+C:\Users\prath\OneDrive\Desktop\Spring Boot Application\TaskManager\src\main\java\com\prathamesh\taskmanager\Config\EmailJob.java
+C:\Users\prath\OneDrive\Desktop\Spring Boot Application\TaskManager\src\main\java\com\prathamesh\taskmanager\Config\QuartzConfig.java
 C:\Users\prath\OneDrive\Desktop\Spring Boot Application\TaskManager\src\main\java\com\prathamesh\taskmanager\Config\SecurityConfig.java
 C:\Users\prath\OneDrive\Desktop\Spring Boot Application\TaskManager\src\main\java\com\prathamesh\taskmanager\Controller\AuthController.java
 C:\Users\prath\OneDrive\Desktop\Spring Boot Application\TaskManager\src\main\java\com\prathamesh\taskmanager\Controller\TaskController.java
@@ -12,6 +14,7 @@ C:\Users\prath\OneDrive\Desktop\Spring Boot Application\TaskManager\src\main\jav
 C:\Users\prath\OneDrive\Desktop\Spring Boot Application\TaskManager\src\main\java\com\prathamesh\taskmanager\Repository\UserRepository.java
 C:\Users\prath\OneDrive\Desktop\Spring Boot Application\TaskManager\src\main\java\com\prathamesh\taskmanager\Service\AuthService.java
 C:\Users\prath\OneDrive\Desktop\Spring Boot Application\TaskManager\src\main\java\com\prathamesh\taskmanager\Service\CustomUserDetails.java
+C:\Users\prath\OneDrive\Desktop\Spring Boot Application\TaskManager\src\main\java\com\prathamesh\taskmanager\Service\EmailService.java
 C:\Users\prath\OneDrive\Desktop\Spring Boot Application\TaskManager\src\main\java\com\prathamesh\taskmanager\Service\JwtService.java
 C:\Users\prath\OneDrive\Desktop\Spring Boot Application\TaskManager\src\main\java\com\prathamesh\taskmanager\Service\TaskService.java
 C:\Users\prath\OneDrive\Desktop\Spring Boot Application\TaskManager\src\main\java\com\prathamesh\taskmanager\TaskManagerApplication.java

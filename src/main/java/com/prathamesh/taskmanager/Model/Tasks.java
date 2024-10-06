@@ -16,7 +16,6 @@ import org.springframework.data.mongodb.core.mapping.MongoId;
 public class Tasks {
     @MongoId
     private String id;
-    @Indexed(unique = true)
     @NonNull
     private String task;
     @NonNull

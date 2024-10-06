@@ -20,6 +20,7 @@ import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.filter.CorsFilter;
 
+import java.util.Arrays;
 import java.util.Collections;
 
 @Configuration
@@ -62,8 +63,8 @@ public class SecurityConfig{
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         CorsConfiguration config = new CorsConfiguration();
         config.setAllowCredentials(true);
-        config.setAllowedOrigins(Collections.singletonList("http://localhost:4200"));
-        config.setAllowedHeaders(Collections.singletonList("*"));
+        config.setAllowedOrigins(Arrays.asList("http://localhost:4200","http://localhost:3000"));
+        config.setAllowedHeaders(Arrays.asList("Authorization","Content-Type"));
         config.setAllowedMethods(Collections.singletonList("*"));
         source.registerCorsConfiguration("/**", config);
         return new CorsFilter(source);

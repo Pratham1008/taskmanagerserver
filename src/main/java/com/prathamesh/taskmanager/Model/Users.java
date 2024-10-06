@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.MongoId;
 import org.springframework.security.core.GrantedAuthority;
@@ -21,6 +22,7 @@ public class Users implements UserDetails {
     @MongoId
     private String id;
     private String name;
+    @Indexed(unique = true)
     private String email;
     private String password;
     private Role role;

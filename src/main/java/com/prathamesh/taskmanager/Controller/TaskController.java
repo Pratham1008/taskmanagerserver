@@ -4,6 +4,7 @@ import com.prathamesh.taskmanager.Model.Tasks;
 import com.prathamesh.taskmanager.Model.UserDto;
 import com.prathamesh.taskmanager.Service.TaskService;
 import jakarta.servlet.http.HttpServletRequest;
+import org.quartz.SchedulerException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,13 +20,17 @@ public class TaskController {
 
     @GetMapping
     public List<Tasks> getTasks(HttpServletRequest req){
-        List<Tasks> tasks = service.getTasksByUsers(req);
-        for(Tasks task : tasks){
-            UserDto userDto = new UserDto();
-            userDto.setId(task.getId());
-            task.setUser(userDto);
+        try {
+            List<Tasks> tasks = service.getTasksByUsers(req);
+            for(Tasks task : tasks){
+                UserDto userDto = new UserDto();
+                userDto.setId(task.getId());
+                task.setUser(userDto);
+            }
+            return tasks;
+        } catch (Exception e) {
+            throw new RuntimeException("No tasks found");
         }
-        return tasks;
     }
 
     @GetMapping("/{id}")
@@ -38,12 +43,12 @@ public class TaskController {
     }
 
     @PostMapping
-    public Tasks createTask(@RequestBody Tasks task, HttpServletRequest request){
+    public Tasks createTask(@RequestBody Tasks task, HttpServletRequest request) throws SchedulerException {
         return service.addTask(task,request);
     }
 
     @PutMapping("/{id}")
-    public Tasks updateTask(@RequestBody Tasks task, @PathVariable String id){
+    public Tasks updateTask(@RequestBody Tasks task, @PathVariable String id) throws SchedulerException {
         return service.updateTask(id,task);
     }
 

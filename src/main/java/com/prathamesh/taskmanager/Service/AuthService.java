@@ -7,6 +7,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -30,9 +31,8 @@ public class AuthService {
         user.setPassword(passwordEncoder.encode(request.getPassword()));
         user = userRepository.save(user);
 
-        String token = jwtService.generateToken(user,response);
 
-        return new AuthResponse(token);
+        return new AuthResponse("User Registered");
 
     }
 
@@ -47,7 +47,8 @@ public class AuthService {
         return new AuthResponse(token);
     }
 
-    public Users getUser(String username){
-        return userRepository.findByEmail(username).orElseThrow();
+    public Users getUser(String username) {
+        return userRepository.findByEmail(username)
+                .orElseThrow(() -> new UsernameNotFoundException("Username not found"));
     }
 }

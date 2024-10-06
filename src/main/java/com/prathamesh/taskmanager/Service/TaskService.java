@@ -1,15 +1,21 @@
 package com.prathamesh.taskmanager.Service;
 
+import com.prathamesh.taskmanager.Config.EmailJob;
 import com.prathamesh.taskmanager.Model.Tasks;
 import com.prathamesh.taskmanager.Model.Users;
 import com.prathamesh.taskmanager.Repository.TaskRepository;
 import com.prathamesh.taskmanager.Repository.UserRepository;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
+import org.quartz.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
+import java.util.UUID;
 
 @Service
 public class TaskService {
@@ -21,6 +27,9 @@ public class TaskService {
 
     @Autowired
     private JwtService jwtService;
+
+    @Autowired
+    private Scheduler scheduler;
 
     public List<Tasks> getTasksByUsers(HttpServletRequest request) {
         Users user = new Users();
@@ -42,7 +51,7 @@ public class TaskService {
         return repository.findById(id).orElse(null);
     }
 
-    public Tasks addTask(Tasks task, HttpServletRequest request) {
+    public Tasks addTask(Tasks task, HttpServletRequest request) throws SchedulerException {
         Cookie[] cookies = request.getCookies();
         if (cookies != null) {
             for (Cookie cookie : cookies) {
@@ -54,14 +63,18 @@ public class TaskService {
                 }
             }
         }
+        String job = UUID.randomUUID().toString();
+        scheduleEmail(task,job);
         return repository.save(task);
     }
 
-    public Tasks updateTask(String id, Tasks task) {
+    public Tasks updateTask(String id, Tasks task) throws SchedulerException {
         Tasks oldTask =  repository.findById(id).orElseThrow();
         oldTask.setTask(task.getTask());
         oldTask.setPriority(task.getPriority());
         oldTask.setDueDate(task.getDueDate());
+        String job = UUID.randomUUID().toString();
+        scheduleEmail(oldTask,job);
         return repository.save(oldTask);
     }
 
@@ -73,5 +86,31 @@ public class TaskService {
 
     public void deleteTask(String id) {
         repository.deleteById(id);
+    }
+
+    private void scheduleEmail(Tasks task, String job) throws SchedulerException {
+        Date dueDate;
+        try {
+            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+            dueDate = dateFormat.parse(task.getDueDate());
+        } catch (ParseException e) {
+            throw new SchedulerException("Invalid date format", e);
+        }
+
+        JobDetail jobDetail = JobBuilder.newJob(EmailJob.class)
+                .withIdentity(job + task.getId())
+                .usingJobData("email", task.getUser().getEmail())
+                .usingJobData("task", task.getTask())
+                .usingJobData("dueDate", task.getDueDate())
+                .build();
+
+        Trigger trigger = TriggerBuilder.newTrigger()
+                .forJob(jobDetail)
+                .withIdentity("emailTrigger-" + task.getId())
+                .startAt(dueDate)
+                .withSchedule(SimpleScheduleBuilder.simpleSchedule().withMisfireHandlingInstructionFireNow())
+                .build();
+
+        scheduler.scheduleJob(jobDetail, trigger);
     }
 }
