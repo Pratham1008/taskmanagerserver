@@ -92,7 +92,7 @@ public class TaskService {
         Date dueDate;
         try {
             SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-            String taskDue = task.getDueDate() + "08:00:00";
+            String taskDue = task.getDueDate() + " 08:00:00";
             dueDate = dateFormat.parse(taskDue);
         } catch (ParseException e) {
             throw new SchedulerException("Invalid date format", e);
