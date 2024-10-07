@@ -2,12 +2,14 @@ package com.prathamesh.taskmanager;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.web.servlet.error.ErrorController;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 @SpringBootApplication
-@RestController
-public class TaskManagerApplication {
+@Controller
+public class TaskManagerApplication implements ErrorController {
 
     public static void main(String[] args) {
         SpringApplication.run(TaskManagerApplication.class, args);
@@ -15,6 +17,11 @@ public class TaskManagerApplication {
 
     @GetMapping("/")
     public String index(){
-        return "<body style='background-color: black; color: white; display: flex; justify-content:center; align-items : center;'><h1>Welcome to The Task Manager Server, End points are protected prefer not to stay here....</h1></body>";
+        return "Desclaimer";
+    }
+
+    @RequestMapping("/error")
+    public String error(){
+        return "pagenotfound";
     }
 }

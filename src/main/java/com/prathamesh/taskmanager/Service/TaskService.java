@@ -15,6 +15,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.TimeZone;
 import java.util.UUID;
 
 @Service
@@ -92,8 +93,10 @@ public class TaskService {
         Date dueDate;
         try {
             SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-            String taskDue = task.getDueDate() + " 08:00:00";
+            dateFormat.setTimeZone(TimeZone.getTimeZone("Asia/Kolkata"));
+            String taskDue = task.getDueDate() + " 11:00:00";
             dueDate = dateFormat.parse(taskDue);
+            System.out.println(dueDate);
         } catch (ParseException e) {
             throw new SchedulerException("Invalid date format", e);
         }
