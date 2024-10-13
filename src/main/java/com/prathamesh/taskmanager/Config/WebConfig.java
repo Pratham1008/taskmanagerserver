@@ -10,7 +10,7 @@ public class WebConfig implements WebMvcConfigurer {
     @Override
     public void addCorsMappings(CorsRegistry registry) {
         registry.addMapping("/**")
-                .allowedOrigins("*")  // Replace "*" with the specific origin(s) of your frontend
+                .allowedOriginPatterns("http://localhost:4200", "https://taskmanagerserver-cxa9.onrender.com")// Replace "*" with the specific origin(s) of your frontend
                 .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
                 .allowedHeaders("Authorization", "Content-Type", "Accept")
                 .exposedHeaders("Authorization")
