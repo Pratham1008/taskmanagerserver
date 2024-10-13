@@ -23,17 +23,15 @@ public class AuthService {
     @Autowired
     private AuthenticationManager authenticationManager;
 
-    public AuthResponse registerUser(Users request, HttpServletResponse response) {
+    public AuthResponse registerUser(Users request) {
         Users user = new Users();
         user.setName(request.getName());
         user.setEmail(request.getEmail());
         user.setRole(request.getRole());
         user.setPassword(passwordEncoder.encode(request.getPassword()));
-        user = userRepository.save(user);
-
+        userRepository.save(user);
 
         return new AuthResponse("User Registered");
-
     }
 
     public AuthResponse authenticate(Users request, HttpServletResponse response) {

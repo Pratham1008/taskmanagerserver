@@ -22,7 +22,7 @@ public class EmailService {
     @Autowired
     private SpringTemplateEngine templateEngine;
 
-    public void sendEmail(String to, String subject, String text, String task, String dueDate) throws MessagingException {
+    public void sendEmail(String to, String subject, String task, String dueDate) throws MessagingException {
         MimeMessage message = mailSender.createMimeMessage();
         MimeMessageHelper helper = new MimeMessageHelper(message, MimeMessageHelper.MULTIPART_MODE_MIXED,
                 StandardCharsets.UTF_8.name());

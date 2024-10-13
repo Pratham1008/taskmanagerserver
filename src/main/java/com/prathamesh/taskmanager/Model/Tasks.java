@@ -2,7 +2,6 @@ package com.prathamesh.taskmanager.Model;
 
 import com.mongodb.lang.NonNull;
 import lombok.*;
-import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.MongoId;
