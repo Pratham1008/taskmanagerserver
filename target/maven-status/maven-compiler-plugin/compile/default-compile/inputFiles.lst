@@ -1,6 +1,7 @@
 C:\Users\prath\OneDrive\Desktop\Spring Boot Application\TaskManager\src\main\java\com\prathamesh\taskmanager\Config\EmailJob.java
 C:\Users\prath\OneDrive\Desktop\Spring Boot Application\TaskManager\src\main\java\com\prathamesh\taskmanager\Config\QuartzConfig.java
 C:\Users\prath\OneDrive\Desktop\Spring Boot Application\TaskManager\src\main\java\com\prathamesh\taskmanager\Config\SecurityConfig.java
+C:\Users\prath\OneDrive\Desktop\Spring Boot Application\TaskManager\src\main\java\com\prathamesh\taskmanager\Config\WebConfig.java
 C:\Users\prath\OneDrive\Desktop\Spring Boot Application\TaskManager\src\main\java\com\prathamesh\taskmanager\Controller\AuthController.java
 C:\Users\prath\OneDrive\Desktop\Spring Boot Application\TaskManager\src\main\java\com\prathamesh\taskmanager\Controller\TaskController.java
 C:\Users\prath\OneDrive\Desktop\Spring Boot Application\TaskManager\src\main\java\com\prathamesh\taskmanager\Filters\JwtFilter.java
