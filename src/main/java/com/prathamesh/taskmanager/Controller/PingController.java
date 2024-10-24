@@ -15,7 +15,7 @@ public class PingController {
 
     @Scheduled(fixedRate = 180000)
     public void keepServerAlive() {
-        String url = "https://easycart-backend-7mw9.onrender.com/ping";
+        String url = "https://taskmanagerserver-9zih.onrender.com/ping";
         String message = "keep-alive";
         try {
             restTemplate.postForEntity(url, message, String.class);
