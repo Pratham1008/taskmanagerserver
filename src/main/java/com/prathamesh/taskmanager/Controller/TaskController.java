@@ -5,8 +5,6 @@ import com.prathamesh.taskmanager.Model.UserDto;
 import com.prathamesh.taskmanager.Service.TaskService;
 import jakarta.servlet.http.HttpServletRequest;
 import org.quartz.SchedulerException;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,18 +12,15 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/tasks")
-@CrossOrigin(origins = "http://localhost:4200", allowCredentials = "true")
 public class TaskController {
 
     @Autowired
     private TaskService service;
 
-    private static final Logger logger = LoggerFactory.getLogger(TaskController.class);
 
     @GetMapping
-    public List<Tasks> getTasks(HttpServletRequest req, @RequestHeader("Authorization") String authorizationHeader){
+    public List<Tasks> getTasks(HttpServletRequest req){
         try {
-            logger.info("Authorization Header: {}", authorizationHeader);
             List<Tasks> tasks = service.getTasksByUsers(req);
             for(Tasks task : tasks){
                 UserDto userDto = new UserDto();

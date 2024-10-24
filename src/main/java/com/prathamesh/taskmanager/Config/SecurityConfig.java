@@ -2,7 +2,7 @@ package com.prathamesh.taskmanager.Config;
 
 import com.prathamesh.taskmanager.Filters.JwtFilter;
 import com.prathamesh.taskmanager.Service.CustomUserDetails;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.AllArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -16,6 +16,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.web.client.RestTemplate;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.filter.CorsFilter;
@@ -24,12 +25,11 @@ import java.util.Arrays;
 
 @Configuration
 @EnableWebSecurity
+@AllArgsConstructor
 public class SecurityConfig{
 
-    @Autowired
-    private CustomUserDetails userDetails;
-    @Autowired
-    private JwtFilter jwtFilter;
+    private final CustomUserDetails userDetails;
+    private final JwtFilter jwtFilter;
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
@@ -58,12 +58,13 @@ public class SecurityConfig{
     }
 
     @Bean
+    public RestTemplate restTemplate() {return new RestTemplate();}
+
+    @Bean
     public CorsFilter corsFilter(){
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         CorsConfiguration config = new CorsConfiguration();
         config.setAllowCredentials(true);
-        config.addAllowedOriginPattern("https://taskmanagerserver-cxa9.onrender.com");
-        //config.addAllowedHeader("Authorization");
         config.setAllowedOrigins(Arrays.asList("http://localhost:4200", "http://localhost:3000", "http://localhost:5000","https://task-manager-three-sooty.vercel.app"));
         config.setAllowedHeaders(Arrays.asList("Authorization","Content-Type"));
         config.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS"));

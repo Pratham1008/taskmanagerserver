@@ -1,5 +1,6 @@
 package com.prathamesh.taskmanager.Model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.mongodb.lang.NonNull;
 import lombok.*;
 import org.springframework.data.mongodb.core.mapping.DBRef;
@@ -21,6 +22,7 @@ public class Tasks {
     private String dueDate;
     @NonNull
     private Priority priority;
+    @JsonIgnore
     @NonNull
     @DBRef
     private Users user;
