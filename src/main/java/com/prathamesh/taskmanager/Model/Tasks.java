@@ -21,10 +21,13 @@ public class Tasks {
     @NonNull
     private String dueDate;
     @NonNull
+    private String time;
+    @NonNull
     private Priority priority;
+    private Boolean done = false;
+
     @JsonIgnore
     @NonNull
     @DBRef
     private Users user;
-    private Boolean done = false;
 }

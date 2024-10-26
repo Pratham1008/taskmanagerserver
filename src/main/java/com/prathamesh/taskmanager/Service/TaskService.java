@@ -94,7 +94,7 @@ public class TaskService {
         try {
             SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
             dateFormat.setTimeZone(TimeZone.getTimeZone("Asia/Kolkata"));
-            String taskDue = task.getDueDate() + " 08:00:00";
+            String taskDue = task.getDueDate() + " " + task.getTime();
             dueDate = dateFormat.parse(taskDue);
             System.out.println(dueDate);
         } catch (ParseException e) {
